@@ -5,64 +5,64 @@ const ApiError = require("../utils/ApiError.js");
 const Subscription = require('../models/subscription.js');
 const axios = require("axios");
 
-const packageData = {
-  Starter: {
-    name: "Starter",
-    price: 800,
-    features: {
-      productLimit: 3,
-      support: "Basic Email Support",
-      analytics: "Basic Analytics",
-      paymentGateways: "Standard Gateways",
-      marketingTools: false,
-      globalReach: false,
-      referralProgram: false,
-      transactionLimits: "Up to 800 DZD/month",
-    },
-  },
-  Classic: {
-    name: "Classic",
-    price: 1500,
-    features: {
-      productLimit: 6,
-      support: "Priority Email Support",
-      analytics: "Advanced Analytics",
-      paymentGateways: "Standard + Premium Gateways",
-      marketingTools: true,
-      globalReach: true,
-      referralProgram: false,
-      transactionLimits: "Up to 1500 DZD/month",
-    },
-  },
-  Growth: {
-    name: "Growth",
-    price: 2400,
-    features: {
-      productLimit: 10,
-      support: "24/7 Support",
-      analytics: "Full Analytics Suite",
-      paymentGateways: "All Gateways + Custom Integrations",
-      marketingTools: true,
-      globalReach: true,
-      referralProgram: true,
-      transactionLimits: "Up to 2400 DZD/month",
-    },
-  },
-  Enterprise: {
-    name: "Enterprise",
-    price: 15000,
-    features: {
-      productLimit: 500,
-      support: "Dedicated Account Manager",
-      analytics: "Custom Analytics and Reporting",
-      paymentGateways: "All Gateways + Custom Integrations",
-      marketingTools: true,
-      globalReach: true,
-      referralProgram: true,
-      transactionLimits: "Unlimited",
-    },
-  },
-};
+// const packageData = {
+//   Starter: {
+//     name: "Starter",
+//     price: 800,
+//     features: {
+//       productLimit: 3,
+//       support: "Basic Email Support",
+//       analytics: "Basic Analytics",
+//       paymentGateways: "Standard Gateways",
+//       marketingTools: false,
+//       globalReach: false,
+//       referralProgram: false,
+//       transactionLimits: "Up to 800 DZD/month",
+//     },
+//   },
+//   Classic: {
+//     name: "Classic",
+//     price: 1500,
+//     features: {
+//       productLimit: 6,
+//       support: "Priority Email Support",
+//       analytics: "Advanced Analytics",
+//       paymentGateways: "Standard + Premium Gateways",
+//       marketingTools: true,
+//       globalReach: true,
+//       referralProgram: false,
+//       transactionLimits: "Up to 1500 DZD/month",
+//     },
+//   },
+//   Growth: {
+//     name: "Growth",
+//     price: 2400,
+//     features: {
+//       productLimit: 10,
+//       support: "24/7 Support",
+//       analytics: "Full Analytics Suite",
+//       paymentGateways: "All Gateways + Custom Integrations",
+//       marketingTools: true,
+//       globalReach: true,
+//       referralProgram: true,
+//       transactionLimits: "Up to 2400 DZD/month",
+//     },
+//   },
+//   Enterprise: {
+//     name: "Enterprise",
+//     price: 15000,
+//     features: {
+//       productLimit: 500,
+//       support: "Dedicated Account Manager",
+//       analytics: "Custom Analytics and Reporting",
+//       paymentGateways: "All Gateways + Custom Integrations",
+//       marketingTools: true,
+//       globalReach: true,
+//       referralProgram: true,
+//       transactionLimits: "Unlimited",
+//     },
+//   },
+// };
 
 const createPackageAndProcessPayment = async (store, packageType, paymentMethod) => {
 
@@ -76,7 +76,6 @@ const createPackageAndProcessPayment = async (store, packageType, paymentMethod)
 
 
   // const selectedPackage = packageData[packageType];
-
 
   const fetchedPackageData = await Subscription.find(); 
   const normalizedPackageType = packageType.trim();
@@ -92,12 +91,13 @@ const createPackageAndProcessPayment = async (store, packageType, paymentMethod)
   try {
     const { _id, ...selectedPackageData } = selectedPackage._doc || selectedPackage; // safely remove _id
 
-    if (store.package && store.package.id) {
+    if (store.package && store.package._id) {
+      console.log("Updating if condtion")
         newPackage = await Package.findByIdAndUpdate(
             store.package.id,
             {
                 ...selectedPackageData,
-                isActive: false,
+                isActive: false, 
                 status: 'pending'
             },
             { new: true }

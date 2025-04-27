@@ -107,7 +107,7 @@ exports.authorizeRolesAndStoreAccess = (...roles) => {
 
       const order = await Order.findById(req.params.id);
       if(order && order.store.toString() !== req.store._id.toString()){
-        return next(new ApiError("You are not authorized to access this resource", 403));
+        return next(new ApiError("You are not authorized to access this resource", 403)); 
       }
     }
 
