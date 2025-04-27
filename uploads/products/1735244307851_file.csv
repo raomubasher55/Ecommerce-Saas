@@ -1,0 +1,3 @@
+name,description,price,category,subcategory,stock,images,discountPercentage,discountStartDate,discountEndDate
+"Product 1","Description 1",100,"categoryId1","subcategoryId1","10","[{\"public_id\":\"img1\",\"url\":\"http://example.com/img1.jpg\"}]",10,"2023-01-01","2023-12-31"
+"Product 2","Description 2",200,"categoryId2","subcategoryId

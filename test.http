@@ -1,0 +1,8 @@
+POST http://localhost:4000/api/v1/login 
+Content-Type: application/json
+Authorization: Bearer token
+// Body
+{
+  "email": "user@user.com",
+  "password" : "password"
+}

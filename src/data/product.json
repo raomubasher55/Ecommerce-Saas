@@ -1,0 +1,22 @@
+
+[
+    {
+        "name":"sand disk ultra 128 gb memory card",
+        "price":"45.8",
+        "description":"A memory card is a type of storage device that is used for storing media and data files. It provides a permanent and non-volatile medium to store data and files from the attached device. Memory cards are commonly used in small, portable devices, such as cameras and phones. A memory card is also known as a flash card.",
+        "ratings":4.5,
+        "images":[
+            {
+                "public_id":"products/idd",
+                "url":"https://pic.jpg"
+            }
+        ],
+ 
+        "category":"Electronics",
+        "seller":"Ebay",
+        "stock":50,
+        "numOfReviews":32,
+        "reviews":[]
+    }
+ 
+] 

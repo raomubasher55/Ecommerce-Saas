@@ -1,0 +1,9 @@
+2) store ka email verification token after 24h expire krna h or user me b same service krni h
+3) jb mutilple store add 1 hi name k krty hain tw sai sy error show hona chaiye
+
+
+make the backend documentation for products, discount , reviews routes in md files form. make beautiful formating in which what i request and which response is come , endpount , method and etc you batter know
+
+
+1)wishlist me payment lagana hain
+2)document me four thing add krna h 
