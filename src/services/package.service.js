@@ -90,24 +90,27 @@ const createPackageAndProcessPayment = async (store, packageType, paymentMethod)
 
   let newPackage;
   try {
-      if (store.package && store.package.id) {
-          newPackage = await Package.findByIdAndUpdate(
-              store.package.id,
-              {
-                  ...selectedPackage,
-                  isActive: false,
-                  status: 'pending'
-              },
-              { new: true }
-          );
-      } else {
-          newPackage = await Package.create({
-              seller: store._id,
-              isActive: false,
-              status: 'pending',
-              ...selectedPackage,
-          });
-      }
+    const { _id, ...selectedPackageData } = selectedPackage._doc || selectedPackage; // safely remove _id
+
+    if (store.package && store.package.id) {
+        newPackage = await Package.findByIdAndUpdate(
+            store.package.id,
+            {
+                ...selectedPackageData,
+                isActive: false,
+                status: 'pending'
+            },
+            { new: true }
+        );
+    } else {
+        newPackage = await Package.create({
+            seller: store._id,
+            isActive: false,
+            status: 'pending',
+            ...selectedPackageData,
+        });
+    }
+    
       
       // Payment processing logic
       if (paymentMethod.toUpperCase() === "CARD") {

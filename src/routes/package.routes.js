@@ -9,7 +9,7 @@ const {
   confirmPayment,
 } = require("../controllers/package.controller");
 const { isAuthenticatedUser, authorizeRoles, isAuthenticatedStore, authorizeRolesAndStoreAccess, isAuthenticatedStoreOrUser } = require("../middlewares/auth.middleware");
-
+ 
 router.post("/", isAuthenticatedStore, createPackageAndProcessPayment);
 
 router.get("/confirm-payment/:packageId", isAuthenticatedStore, confirmPayment);
