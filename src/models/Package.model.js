@@ -51,7 +51,6 @@ const packageSchema = new mongoose.Schema(
       transactionLimits: {
         type: String,
         required: true,
-        enum: ["Up to 800 DZD/month", "Up to 1500 DZD/month", "Up to 2400 DZD/month", "Unlimited"],
       },
     },
     isActive:{
